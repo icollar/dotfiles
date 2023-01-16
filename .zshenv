@@ -1,4 +1,3 @@
-# BEGIN ANSIBLE MANAGED BLOCK
 export PYENV_ROOT="${HOME}/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
@@ -12,4 +11,3 @@ eval "$(pyenv init --path)"
 
 export SDKMAN_DIR="${HOME}/.sdkman"
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
-# END ANSIBLE MANAGED BLOCK
