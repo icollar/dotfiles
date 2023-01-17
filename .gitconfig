@@ -1,0 +1,34 @@
+[include]
+	path = ~/.config/git/includes
+[push]
+	default = simple
+[diff]
+	tool = meld
+[alias]
+	encrypted = crypt status -e
+	unencrypted = crypt status -u
+	name = rev-parse --abbrev-ref HEAD
+	ldiff = diff --name-only master .
+	mdiff = difftool --dir-diff master .
+	bdiff = difftool --dir-diff
+	mupdate = fetch origin master:master
+	hist = log master.. --oneline
+	last = log -1
+	squash = ! git rebase -i HEAD~$(git hist | wc -l)
+	backup = ! git branch -f $(git name)-$(date +%Y%m%d%H%M%S)
+	date = ! git commit --amend --no-edit --date=$(date)
+	new = ! git push --set-upstream origin $(git name)
+	del = ! BRANCH=$(git name) git checkout master && git branch -d $BRANCH
+	nuke = ! git checkout master && git pull && git fetch origin --prune && git branch | grep -v master | xargs --no-run-if-empty git branch -D
+	lock = crypt lock
+	unlock = crypt unlock
+	dtag = push --delete origin
+[core]
+	editor = nvim
+[commit]
+	gpgsign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
