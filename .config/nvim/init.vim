@@ -43,8 +43,7 @@ set mouse=a                     " default mouse on
 set textwidth=0                 " Don't wrap lines by default
 
 " Neovim python provider
-let g:python_host_prog='/home/icollar/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog='/home/icollar/.pyenv/versions/neovim3/bin/python'
+let g:python3_host_prog = $HOME..'/.pyenv/versions/neovim/bin/python'
 
 " Navigate between buffers
 nmap <silent> <C-n> :bp<CR>
