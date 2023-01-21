@@ -17,6 +17,7 @@ source "${ZINIT_DIR}/zinit.zsh"
 
 zinit snippet OMZ::lib/completion.zsh
 zinit snippet OMZP::dirhistory
+zinit snippet OMZP::pyenv
 
 zinit ice depth"1"
 zinit light romkatv/powerlevel10k
