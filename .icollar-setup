@@ -2,7 +2,6 @@
 
 set -euo pipefail
 
-rm -rf Desktop Music Pictures Public Templates Videos
 
 font_dir="${HOME}/.local/share/fonts"
 mkdir -p "${font_dir}"
@@ -28,6 +27,11 @@ dconf write "${path}:${profile}/background-color" "'rgb(23,20,33)'"
 dconf write "${path}:${profile}/font" "'MesloLGS NF 12'"
 dconf write "${path}:${profile}/scrollback-unlimited" true
 dconf write "${path}:${profile}/scrollbar-policy" "'never'"
+
+# Desktop
+rm -rf Desktop Music Pictures Public Templates Videos
+
+dconf write /org/gnome/desktop/background/picture-uri "'${HOME}/.local/share/backgrounds/birds.jpg'"
 
 # Neovim
 export PYENV_ROOT="$HOME/.pyenv"
