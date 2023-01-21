@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+rm -rf Desktop Music Pictures Public Templates Videos
+
+font_dir="${HOME}/.local/share/fonts"
+mkdir -p "${font_dir}"
+pushd "${font_dir}"
+for font in MesloLGS%20NF%20Regular.ttf MesloLGS%20NF%20Bold.ttf MesloLGS%20NF%20Italic.ttf MesloLGS%20NF%20Bold%20Italic.ttf
+do
+	wget -nc "https://github.com/romkatv/powerlevel10k-media/raw/master/${font}"
+done
+
+gnome-extensions disable ubuntu-dock@ubuntu.com
+gnome-extensions disable ding@rastersoft.com
+
+# Gnome Terminal
+path=/org/gnome/terminal/legacy/profiles:/
+profile="$(uuidgen)"
+dconf write "${path}list" "['${profile}']"
+dconf write "${path}default" "'${profile}'"
+dconf write "${path}:${profile}/visible-name" "'icollar'"
+dconf write "${path}:${profile}/use-system-font" false
+dconf write "${path}:${profile}/use-theme-colors" false
+dconf write "${path}:${profile}/foreground-color" "'rgb(208,207,204)'"
+dconf write "${path}:${profile}/background-color" "'rgb(23,20,33)'"
+dconf write "${path}:${profile}/font" "'MesloLGS NF 12'"
+dconf write "${path}:${profile}/scrollback-unlimited" true
+dconf write "${path}:${profile}/scrollbar-policy" "'never'"
+
+# Neovim
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+pyenv virtualenv neovim
+pyenv shell neovim
+pip install neovim
+npm install -g neovim
