@@ -47,3 +47,4 @@ pyenv virtualenv neovim
 pyenv shell neovim
 pip install neovim
 npm install -g neovim
+
