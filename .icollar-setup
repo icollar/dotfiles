@@ -2,7 +2,6 @@
 
 set -euo pipefail
 
-
 font_dir="${HOME}/.local/share/fonts"
 mkdir -p "${font_dir}"
 pushd "${font_dir}"
@@ -19,14 +18,20 @@ path=/org/gnome/terminal/legacy/profiles:/
 profile="$(uuidgen)"
 dconf write "${path}list" "['${profile}']"
 dconf write "${path}default" "'${profile}'"
-dconf write "${path}:${profile}/visible-name" "'icollar'"
-dconf write "${path}:${profile}/use-system-font" false
-dconf write "${path}:${profile}/use-theme-colors" false
-dconf write "${path}:${profile}/foreground-color" "'rgb(208,207,204)'"
-dconf write "${path}:${profile}/background-color" "'rgb(23,20,33)'"
+dconf write "${path}:${profile}/background-color" "'rgb(24,24,24)'"
+dconf write "${path}:${profile}/background-transparency-percent" "10"
+dconf write "${path}:${profile}/bold-is-bright" "true"
 dconf write "${path}:${profile}/font" "'MesloLGS NF 12'"
-dconf write "${path}:${profile}/scrollback-unlimited" true
+dconf write "${path}:${profile}/foreground-color" "'rgb(208,207,204)'"
+dconf write "${path}:${profile}/palette" "['rgb(46,52,54)', 'rgb(204,0,0)', 'rgb(78,154,6)', 'rgb(196,160,0)', 'rgb(52,101,164)', 'rgb(117,80,123)', 'rgb(6,152,154)', 'rgb(211,215,207)', 'rgb(85,87,83)', 'rgb(239,41,41)', 'rgb(138,226,52)', 'rgb(252,233,79)', 'rgb(114,159,207)', 'rgb(173,127,168)', 'rgb(52,226,226)', 'rgb(238,238,236)']"
+dconf write "${path}:${profile}/scrollback-unlimited" "true"
 dconf write "${path}:${profile}/scrollbar-policy" "'never'"
+dconf write "${path}:${profile}/use-system-font" "false"
+dconf write "${path}:${profile}/use-theme-colors" "false"
+dconf write "${path}:${profile}/use-theme-transparency" "false"
+dconf write "${path}:${profile}/use-transparent-background" "true"
+dconf write "${path}:${profile}/visible-name" "'icollar'"
+
 
 # Desktop
 rm -rf Desktop Music Pictures Public Templates Videos
